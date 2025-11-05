@@ -1,0 +1,69 @@
+@import '../../styles/_theme.scss';
+
+/* Sencillo estilo de calculadora (uso de variables compartidas) */
+.calculator-container { display:flex; justify-content:center; align-items:center; padding: 32px 12px; }
+
+.calculator {
+  width: 320px;
+  @include card-base;
+  padding: 14px;
+}
+
+.display {
+  height: 64px;
+  background: $display-bg;
+  border-radius: 8px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding: 0 12px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $text;
+  margin-bottom: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+
+.btn {
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid $muted-border;
+  background: $muted-surface;
+  font-size: 1rem;
+  color: $text;
+  cursor: pointer;
+  transition: background .12s ease, transform .06s ease, box-shadow .12s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn.equal { background: linear-gradient(180deg, $accent, $accent-dark); color: #fff; box-shadow: 0 6px 14px rgba(59,143,128,0.12); }
+.btn.zero { grid-column: span 2; }
+.btn.control { background: $muted-surface; }
+.btn:hover:not(.equal) { background: lighten($muted-surface, 2%); }
+
+.keyboard-info { 
+  margin-top: 8px; 
+  text-align: center; 
+  padding: 6px 8px;
+  background: rgba($accent, 0.05);
+  border-radius: 6px;
+  border: 1px solid rgba($accent, 0.1);
+}
+
+.keyboard-info small { 
+  color: $text-muted; 
+  font-size: 0.8rem; 
+  line-height: 1.3;
+}
+
+.footer { margin-top: 12px; text-align:center; }
+
+@media (max-width: 380px) { 
+  .calculator { width: 100%; }
+  .keyboard-info small { font-size: 0.75rem; }
+}

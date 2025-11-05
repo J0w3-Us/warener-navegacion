@@ -1,0 +1,40 @@
+<div id="container-info">
+    <h2>Directivas en angular > Directivas Incorporadas</h2>
+    <p>
+        Angular proporciona una serie de directivas incorporadas que son muy útiles para la manipulación del DOM y la
+        gestión de la interacción con el usuario. Algunos ejemplos de directivas incorporadas son If, For, Switch,
+        ngStyle y ngClass.
+    </p>
+    <h4>If</h4>
+    @if(5 > 4){
+    <p> Soy un texto que se puede mostrar</p>
+    }
+
+    <h4>For</h4>
+    @for(nombre of nombres; track nombre){
+    <p>{{nombre}}</p>
+    }
+
+    <h4>Switch</h4>
+    @switch (tipoMensaje) {
+    @case ('aviso') {
+    <p>Este es solo un aviso.</p>
+    }
+    @case ('error') {
+    <p>Ha ocurrido un error.</p>
+    }
+    @default {
+    <p>Este es un mensaje genérico.</p>
+    }
+    }
+
+    <h4>NgStyle</h4>
+    <p [ngStyle]="{ 'color': colorFondo }">
+        Este párrafo tiene un color personalizado.
+    </p>
+
+    <h4>NgClass</h4>
+    <p [ngClass]="{ 'subrayado': subrayarTexto, 'rojo': colorRojo }">
+        Este párrafo tiene clases de estilo aplicadas mediante ngClass.
+    </p>
+</div>

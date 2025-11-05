@@ -1,0 +1,78 @@
+<div id="banner">
+    <div>
+        <h1>MI PRIMER PROYECTO ANGULAR</h1>
+    </div>
+</div>
+<div id="container-info">
+    <h2>Bienvenido a mi primer proyecto en Angular</h2>
+    <p> Angular es un framework de desarrollo de aplicaciones web de código abierto que ha ganado gran popularidad en la
+        comunidad de desarrolladores desde su lanzamiento en 2010. Creado y mantenido por Google, Angular ha
+        experimentado una evolución significativa a lo largo de los años y se ha convertido en una herramienta
+        fundamental para la creación de aplicaciones web modernas, dinámicas y de alto rendimiento.
+        <br><br>
+        En sus inicios, Angular fue presentado como AngularJS, una librería JavaScript que revolucionó la forma en que
+        se construían aplicaciones web, al introducir el concepto de enlace de datos bidireccional y componentes
+        reutilizables. Sin embargo, con el tiempo, se identificaron ciertas limitaciones y oportunidades de mejora en
+        AngularJS, lo que llevó al lanzamiento de una versión completamente nueva en 2016, conocida simplemente como
+        Angular o Angular 2+.
+        <br><br>
+        La nueva versión de Angular introdujo cambios radicales y mejoras significativas en el framework. En lugar de
+        basarse en JavaScript puro, Angular se reescribió desde cero utilizando TypeScript, un superset de JavaScript
+        que añade características como tipos estáticos y decoradores, lo que facilita el desarrollo de aplicaciones más
+        robustas y escalables. TypeScript también proporciona una excelente herramienta de autocompletado y detección de
+        errores en tiempo de compilación, lo que aumenta la productividad del desarrollador y reduce los errores durante
+        el ciclo de desarrollo.
+        <br><br>
+        Una de las características más destacadas de Angular es su arquitectura basada en componentes. Los componentes
+        son la piedra angular de cualquier aplicación Angular y representan partes específicas de la interfaz de usuario
+        con su lógica y plantillas asociadas. Esto fomenta una estructura modular y facilita la reutilización de código,
+        lo que lleva a un código más limpio y mantenible.
+        <br><br>
+        Angular también se destaca por su capacidad de inyección de dependencias, que facilita la gestión de la
+        comunicación entre componentes y proporciona una forma eficiente de compartir datos y servicios en toda la
+        aplicación.
+    </p>
+
+    <hr>
+    
+    <h2>Navegación Principal</h2>
+    <div style="margin-bottom: 20px;">
+        <button routerLink="/directivas">Ver Directivas</button> 
+        <button routerLink="/directivas/incorporadas">Ver Ejemplos</button>
+        <button routerLink="/suma/250/50">Ejemplo de Suma con Parámetros</button>
+    </div>
+
+    <hr>
+    
+    <h3>Demo de Ciclos de Vida y @Input()</h3>
+    
+    <button (click)="cambiarMensaje()">Cambiar Mensaje (@Input)</button>
+    <br><br>
+
+    <app-mi-boton 
+        [inputRuta]="'directivas/incorporadas'" 
+        [inputMensaje]="mensaje"> 
+    </app-mi-boton>
+    
+    <hr>
+    
+    <h2> ACTIVIDAD 4.1: Componente Reutilizable Card</h2>
+    <div class="card-container">
+        <app-card 
+            [titulo]="'CONTRATOS API'" 
+            [descripcion]="'Los componentes reutilizables deben ser tipados con interfaces (contratos de datos) para asegurar la integridad de la API.'"
+            [pie]="'Sección: Tipado'"></app-card>
+
+        <app-card 
+            [titulo]="'DI y Servicios'" 
+            [descripcion]="'La inyección de dependencias (DI) permite que el servicio HTTP sea fácilmente reemplazable para realizar pruebas unitarias.'"
+            [pie]="'Sección: Pruebas'" ></app-card>
+
+        <app-card 
+            [titulo]="'NGONINIT'" 
+            [descripcion]="'Es el lugar ideal para iniciar la carga de datos del backend, ya que el componente está completamente inicializado.'"
+            [pie]="'Sección: Lifecycle Hooks'"></app-card>
+    </div>
+    
+
+</div>

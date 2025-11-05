@@ -1,0 +1,22 @@
+@import '../../styles/_theme.scss';
+
+.card {
+  @include card-base;
+  border: 1px solid $muted-border;
+  width: 300px;
+  margin: 12px;
+  display: inline-block;
+  vertical-align: top;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.card:hover { transform: translateY(-6px); box-shadow: 0 12px 26px rgba(16,42,67,0.09); }
+
+.header { background: linear-gradient(180deg, rgba($accent,0.12), transparent); padding: 14px; }
+
+.header h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: $text; }
+
+.body { padding: 14px; font-size: 0.95rem; min-height: 72px; color: $text-muted; }
+
+.footer { padding: 10px 14px; border-top: 1px solid $muted-border; background: lighten($surface, 0%); color: $accent-dark; font-size: 0.85rem; font-weight: 600; }

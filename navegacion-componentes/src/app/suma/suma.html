@@ -1,0 +1,44 @@
+<!-- src/app/suma/suma.html (navegacion-componentes) -->
+
+<div class="calculator-container">
+  <div class="calculator">
+    <div class="display" aria-live="polite">{{ display }}</div>
+
+    <div class="buttons">
+      <button class="btn control" (click)="clear()">C</button>
+      <button class="btn control" (click)="backspace()">⌫</button>
+      <button class="btn control" (click)="setOperator('/')">÷</button>
+
+      <button class="btn" (click)="pressDigit('7')">7</button>
+      <button class="btn" (click)="pressDigit('8')">8</button>
+      <button class="btn" (click)="pressDigit('9')">9</button>
+      <button class="btn" (click)="setOperator('*')">×</button>
+
+      <button class="btn" (click)="pressDigit('4')">4</button>
+      <button class="btn" (click)="pressDigit('5')">5</button>
+      <button class="btn" (click)="pressDigit('6')">6</button>
+      <button class="btn" (click)="setOperator('-')">−</button>
+
+      <button class="btn" (click)="pressDigit('1')">1</button>
+      <button class="btn" (click)="pressDigit('2')">2</button>
+      <button class="btn" (click)="pressDigit('3')">3</button>
+      <button class="btn" (click)="setOperator('+')">+</button>
+
+      <button class="btn zero" (click)="pressDigit('0')">0</button>
+      <button class="btn" (click)="pressDot()">.</button>
+      <button class="btn equal" (click)="calculate()">=</button>
+    </div>
+
+    <div class="keyboard-info">
+      <small class="muted">
+        🎹 <strong>Soporte de teclado:</strong>
+        Números (0-9), Operadores (+, -, *, /),
+        Enter (=), Escape (limpiar), Backspace (borrar)
+      </small>
+    </div>
+
+    <div class="footer">
+      <button routerLink="/">Volver a Inicio</button>
+    </div>
+  </div>
+</div>

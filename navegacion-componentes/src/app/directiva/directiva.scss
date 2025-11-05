@@ -1,0 +1,12 @@
+@import '../../styles/_theme.scss';
+
+#container-info {
+  padding: 24px;
+  background: transparent;
+}
+
+#container-info h2 { color: $text; margin-bottom: 12px; }
+
+#container-info p { color: $text-muted; line-height: 1.7; }
+
+.note { color: $text-muted; font-size: 0.95rem; }
