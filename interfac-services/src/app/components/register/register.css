@@ -1,0 +1,21 @@
+/* minimal monochrome form similar to login */
+.login-box{
+  max-width:420px;
+  margin:48px auto;
+  padding:24px;
+  background:#fff;
+  border:1px solid #e6e6e6;
+  box-shadow:0 6px 18px rgba(0,0,0,0.03);
+  font-family: Roboto, sans-serif;
+}
+.login-box h2{
+  font-family: 'DM Serif Text', serif;
+  text-align:center;
+  margin-bottom:16px;
+}
+.login-box label{display:block;margin-top:12px;margin-bottom:6px;font-size:0.9rem;color:#222}
+.login-box input{width:100%;padding:10px;border:1px solid #ddd;border-radius:4px}
+.actions{display:flex;align-items:center;justify-content:space-between;margin-top:18px}
+.actions .link{font-size:0.9rem;color:#333;text-decoration:none}
+.actions button{background:#111;color:#fff;border:none;padding:10px 16px;border-radius:4px;cursor:pointer}
+.actions button[disabled]{opacity:0.6;cursor:default}

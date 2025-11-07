@@ -1,0 +1,119 @@
+/* CSS Global - Diseño minimalista monocromático */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  background-color: #FFFFFF;
+  color: #000000;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tipografía global */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Serif Text', serif;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+p, label, button, input, textarea {
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+}
+
+/* Utilidades globales */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0;
+}
+
+.btn:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #333333;
+}
+
+.btn-danger {
+  border-color: #FF0000;
+  color: #FF0000;
+  background-color: #FFFFFF;
+}
+
+.btn-danger:hover {
+  background-color: #FF0000;
+  color: #FFFFFF;
+}
+
+/* Formularios globales */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 0;
+  border: none;
+  border-bottom: 1px solid #EAEAEA;
+  background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #000000;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+  border-bottom-color: #000000;
+}
+
+.form-control::placeholder {
+  color: #999999;
+  font-weight: 300;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}

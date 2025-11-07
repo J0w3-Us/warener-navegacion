@@ -1,0 +1,12 @@
+<div class="toasts-wrapper" role="status" aria-live="polite" aria-atomic="false">
+    <div class="toast" *ngFor="let t of (toast.messages$ | async); trackBy: trackById" [ngClass]="t.type"
+        [class.closing]="t.closing">
+        <div class="toast-inner">
+            <div class="toast-body">
+                <strong *ngIf="t.title" class="toast-title">{{ t.title }}</strong>
+                <div class="toast-message">{{ t.message }}</div>
+            </div>
+            <button class="toast-close" (click)="toast.close(t.id)">×</button>
+        </div>
+    </div>
+</div>

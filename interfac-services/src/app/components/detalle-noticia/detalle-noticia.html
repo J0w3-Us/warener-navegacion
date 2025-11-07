@@ -1,0 +1,112 @@
+<div class="detalle-container">
+
+  <!-- Barra de navegación superior -->
+  <nav class="top-nav">
+    <button class="btn-back" (click)="volver()">
+      ← Volver a Noticias
+    </button>
+    <button class="btn-compartir" (click)="compartir()" *ngIf="noticia">
+      📤 Compartir
+    </button>
+  </nav>
+
+  <!-- Loader -->
+  <div *ngIf="cargando" class="loader-container">
+    <div class="loader"></div>
+    <p>Cargando noticia...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="error-message">
+    <p>⚠️ {{ error }}</p>
+    <button (click)="volver()" class="btn-volver">Volver a la lista</button>
+  </div>
+
+  <!-- Contenido de la Noticia -->
+  <article *ngIf="!cargando && !error && noticia" class="noticia-detalle">
+
+    <!-- Categoría -->
+    <div class="categoria-header">
+      <span class="categoria-badge">{{ noticia.categoria }}</span>
+      <span class="destacada-badge" *ngIf="noticia.destacada">⭐ DESTACADA</span>
+    </div>
+
+    <!-- Título Principal -->
+    <h1 class="titulo-principal">{{ noticia.titulo }}</h1>
+
+    <!-- Metadatos -->
+    <div class="metadata">
+      <div class="autor-info">
+        <span class="avatar">👤</span>
+        <div class="autor-detalles">
+          <span class="autor-nombre">{{ noticia.autor }}</span>
+          <span class="autor-rol">Corresponsal</span>
+        </div>
+      </div>
+      <div class="fecha-info">
+        <span class="icono-fecha">🕐</span>
+        <span class="fecha-texto">{{ formatearFecha(noticia.fecha) }}</span>
+      </div>
+    </div>
+
+    <!-- Imagen Principal -->
+    <div class="imagen-principal"
+      [style.background-image]="noticia.imagenUrl ? 'url(' + noticia.imagenUrl + ')' : 'url(https://via.placeholder.com/1200x600/1e3c72/ffffff?text=Warner+News)'">
+    </div>
+
+    <!-- Contenido del Artículo -->
+    <div class="articulo-contenido">
+      <div class="contenido-texto">
+        {{ noticia.contenido }}
+      </div>
+    </div>
+
+    <!-- Información Adicional -->
+    <div class="info-adicional">
+      <div class="info-box">
+        <strong>Usuario Alta:</strong> {{ noticia.UserAlta }}
+      </div>
+      <div class="info-box">
+        <strong>Fecha Alta:</strong> {{ formatearFecha(noticia.FechaAlta) }}
+      </div>
+      <div class="info-box" *ngIf="noticia.UserMod">
+        <strong>Última Modificación:</strong> {{ noticia.UserMod }} - {{ formatearFecha(noticia.FechaMod) }}
+      </div>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="acciones-footer">
+      <button class="btn-accion btn-primary" (click)="volver()">
+        Ver más noticias
+      </button>
+      <button class="btn-accion btn-secondary" (click)="compartir()">
+        Compartir artículo
+      </button>
+      <button class="btn-accion btn-warning" (click)="toggleEditar()"
+        *ngIf="noticia && (isOwner() || currentUserRole === 'admin')">Editar</button>
+      <button class="btn-accion btn-danger" (click)="eliminarNoticia()"
+        *ngIf="noticia && (isOwner() || currentUserRole === 'admin')">Eliminar</button>
+    </div>
+
+  </article>
+
+  <!-- Formulario de edición en línea -->
+  <article *ngIf="editMode && editedNoticia" class="noticia-detalle-edit">
+    <h2>Editar noticia</h2>
+    <input [(ngModel)]="editedNoticia.titulo" placeholder="Título" />
+    <input [(ngModel)]="editedNoticia.autor" placeholder="Autor" />
+    <input [(ngModel)]="editedNoticia.categoria" placeholder="Categoría" />
+    <textarea [(ngModel)]="editedNoticia.contenido" placeholder="Contenido"></textarea>
+    <label><input type="checkbox" [(ngModel)]="editedNoticia.destacada" /> Destacada</label>
+    <div class="edit-actions">
+      <button class="btn-accion btn-primary" (click)="guardarEdicion()">Guardar</button>
+      <button class="btn-accion" (click)="toggleEditar()">Cancelar</button>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="detalle-footer">
+    <p>Warner News © 2025 | Periodismo de calidad</p>
+  </footer>
+
+</div>

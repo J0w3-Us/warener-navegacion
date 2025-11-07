@@ -1,0 +1,19 @@
+<div class="app-container">
+  <!-- Barra de Navegación Principal: izquierda (Nueva Noticia), centro (Noticias), derecha (Cerrar sesión/Entrar) -->
+  <nav class="main-nav three-col">
+    <div class="nav-left"></div>
+
+    <div class="nav-center">
+      <a routerLink="/noticias" routerLinkActive="active" class="nav-title">newwarner</a>
+    </div>
+
+    <div class="nav-right"></div>
+  </nav>
+
+  <!-- Contenido de las Rutas -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+  <!-- Toaster global -->
+  <app-toasts></app-toasts>
+</div>

@@ -1,0 +1,132 @@
+<!-- Lista de Noticias - Diseño minimalista basado en referencias -->
+<div class="news-page">
+  <div class="news-container">
+    <!-- Header -->
+    <div class="news-header">
+      <h1 class="app-title">Noticias</h1>
+      <div class="header-actions">
+        <!-- Mostrar siempre el botón Nueva Noticia; si no hay sesión redirige a login -->
+        <button class="action-button" (click)="openCreateOrLogin()">Nueva Noticia</button>
+
+        <!-- Mostrar Cerrar sesión sólo si está autenticado -->
+        <button *ngIf="authService.isLoggedIn()" class="action-button secondary" (click)="logout()">Cerrar
+          sesión</button>
+
+        <!-- Mostrar Entrar si NO está autenticado -->
+        <button *ngIf="!authService.isLoggedIn()" class="action-button secondary" (click)="goToLogin()">Entrar</button>
+      </div>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <!-- Indicador de carga -->
+    <div *ngIf="cargando" class="loading-indicator">
+      <p>Cargando noticias...</p>
+    </div>
+
+    <!-- Lista de noticias -->
+    <div *ngIf="!cargando && !error" class="news-content">
+      <div *ngIf="noticias && noticias.length > 0; else noNews" class="news-grid">
+        <div class="news-card" *ngFor="let noticia of noticias; trackBy: trackByNoticiaId">
+          <div class="card-content">
+            <div class="news-media">
+              <!-- Mostrar imagen real si existe, si no usar el fallback SVG embebido -->
+              <img [src]="noticia.imagenUrl || defaultImage" alt="{{ noticia.titulo || 'Noticia' }}"
+                title="{{ noticia.titulo || 'Noticia' }}" class="news-image" />
+            </div>
+            <h2 class="news-title" (click)="verDetalle(noticia.id)">{{ noticia.titulo }}</h2>
+            <p class="news-description" *ngIf="expandedId !== noticia.id">{{ noticia.resumen }}</p>
+            <p class="news-description full" *ngIf="expandedId === noticia.id">{{ noticia.contenido }}</p>
+            <a class="leer-mas" href="#" (click)="toggleExpand(noticia); $event.preventDefault();">
+              {{ expandedId === noticia.id ? 'Mostrar menos' : 'Leer más' }}
+            </a>
+
+            <!-- Metadatos -->
+            <div class="news-meta">
+              <span class="news-author">{{ noticia.autor }}</span>
+              <span class="news-separator">•</span>
+              <span class="news-date">{{ noticia.fechaFormateada }}</span>
+              <span class="news-category" *ngIf="noticia.categoria">{{ noticia.categoria }}</span>
+            </div>
+
+            <!-- Acciones - TEMPORALMENTE VISIBLES PARA PRUEBAS -->
+            <div class="news-actions">
+              <button type="button" class="action-button small" (click)="editarNoticia(noticia)">
+                Editar
+              </button>
+              <button type="button" class="action-button danger small" (click)="eliminarNoticia(noticia.id)">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado vacío -->
+      <ng-template #noNews>
+        <div class="empty-state">
+          <h2 class="empty-title">No hay noticias disponibles</h2>
+          <p class="empty-description">Aún no se han publicado noticias.</p>
+          <button type="button" class="action-button" (click)="openCreateOrLogin()">
+            Crear Primera Noticia
+          </button>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- Formulario para crear noticia -->
+    <div *ngIf="showCreate" class="create-overlay">
+      <div class="create-form-container">
+        <div class="form-header">
+          <h2 class="form-title">Nueva Noticia</h2>
+          <button type="button" class="close-button" (click)="showCreate = false">×</button>
+        </div>
+
+        <form class="create-form">
+          <div class="form-group">
+            <label class="form-label">Título</label>
+            <input type="text" class="form-input" [(ngModel)]="newNoticia.titulo" name="titulo"
+              placeholder="Título de la noticia" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Autor</label>
+            <input type="text" class="form-input" [(ngModel)]="newNoticia.autor" name="autor"
+              placeholder="Nombre del autor" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Categoría</label>
+            <input type="text" class="form-input" [(ngModel)]="newNoticia.categoria" name="categoria"
+              placeholder="Categoría" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Contenido</label>
+            <textarea class="form-textarea" [(ngModel)]="newNoticia.contenido" name="contenido"
+              placeholder="Contenido de la noticia" rows="6"></textarea>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="newNoticia.destacada" name="destacada" />
+              <span class="checkbox-text">Marcar como destacada</span>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="action-button secondary" (click)="showCreate = false">
+              Cancelar
+            </button>
+            <button type="button" class="action-button" (click)="crearNoticia()" [disabled]="creando">
+              {{ creando ? 'Creando...' : 'Crear Noticia' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
